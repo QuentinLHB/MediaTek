@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MediaTek
+namespace MediaTek.Vue
 {
-    public partial class Form1 : Form
+    public partial class FrmAbsences : Form
     {
-        public Form1()
+        public FrmAbsences()
         {
             InitializeComponent();
-
         }
     }
 }
