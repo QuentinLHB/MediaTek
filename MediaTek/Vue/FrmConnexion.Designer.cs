@@ -57,7 +57,7 @@
             this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
+            this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpLoginPwd.Size = new System.Drawing.Size(466, 225);
             this.tlpLoginPwd.TabIndex = 0;
@@ -65,7 +65,7 @@
             // txtMdp
             // 
             this.txtMdp.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtMdp.Location = new System.Drawing.Point(236, 82);
+            this.txtMdp.Location = new System.Drawing.Point(236, 96);
             this.txtMdp.MaximumSize = new System.Drawing.Size(200, 35);
             this.txtMdp.Name = "txtMdp";
             this.txtMdp.Size = new System.Drawing.Size(150, 22);
@@ -75,7 +75,7 @@
             // 
             this.lblPwd.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPwd.AutoSize = true;
-            this.lblPwd.Location = new System.Drawing.Point(125, 84);
+            this.lblPwd.Location = new System.Drawing.Point(125, 98);
             this.lblPwd.Name = "lblPwd";
             this.lblPwd.Size = new System.Drawing.Size(105, 17);
             this.lblPwd.TabIndex = 4;
@@ -84,7 +84,7 @@
             // txtIdentifiant
             // 
             this.txtIdentifiant.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtIdentifiant.Location = new System.Drawing.Point(236, 52);
+            this.txtIdentifiant.Location = new System.Drawing.Point(236, 66);
             this.txtIdentifiant.MaximumSize = new System.Drawing.Size(200, 35);
             this.txtIdentifiant.Name = "txtIdentifiant";
             this.txtIdentifiant.Size = new System.Drawing.Size(150, 22);
@@ -94,7 +94,7 @@
             // 
             this.lblLogin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblLogin.AutoSize = true;
-            this.lblLogin.Location = new System.Drawing.Point(149, 54);
+            this.lblLogin.Location = new System.Drawing.Point(149, 68);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(81, 17);
             this.lblLogin.TabIndex = 3;
@@ -103,9 +103,9 @@
             // btnValider
             // 
             this.btnValider.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnValider.Location = new System.Drawing.Point(236, 111);
+            this.btnValider.Location = new System.Drawing.Point(236, 125);
             this.btnValider.Name = "btnValider";
-            this.btnValider.Size = new System.Drawing.Size(122, 35);
+            this.btnValider.Size = new System.Drawing.Size(122, 34);
             this.btnValider.TabIndex = 6;
             this.btnValider.Text = "Connexion";
             this.btnValider.UseVisualStyleBackColor = true;

@@ -42,10 +42,10 @@
             this.txtPrenom = new System.Windows.Forms.TextBox();
             this.txtTel = new System.Windows.Forms.TextBox();
             this.txtMail = new System.Windows.Forms.TextBox();
-            this.cboServices = new System.Windows.Forms.ComboBox();
-            this.btnAnnuler = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAnnuler = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.cboServices = new System.Windows.Forms.ComboBox();
             this.btnAjouter = new System.Windows.Forms.Button();
             this.btnModifier = new System.Windows.Forms.Button();
             this.btnSupprimer = new System.Windows.Forms.Button();
@@ -233,26 +233,6 @@
             this.txtMail.Size = new System.Drawing.Size(160, 22);
             this.txtMail.TabIndex = 23;
             // 
-            // cboServices
-            // 
-            this.cboServices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboServices.FormattingEnabled = true;
-            this.cboServices.Location = new System.Drawing.Point(478, 229);
-            this.cboServices.Name = "cboServices";
-            this.cboServices.Size = new System.Drawing.Size(160, 24);
-            this.cboServices.TabIndex = 25;
-            // 
-            // btnAnnuler
-            // 
-            this.btnAnnuler.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAnnuler.Location = new System.Drawing.Point(83, 3);
-            this.btnAnnuler.MinimumSize = new System.Drawing.Size(74, 38);
-            this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(74, 38);
-            this.btnAnnuler.TabIndex = 1;
-            this.btnAnnuler.Text = "Annuler";
-            this.btnAnnuler.UseVisualStyleBackColor = true;
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
@@ -265,9 +245,20 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(160, 44);
             this.tableLayoutPanel2.TabIndex = 24;
+            // 
+            // btnAnnuler
+            // 
+            this.btnAnnuler.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAnnuler.Location = new System.Drawing.Point(83, 3);
+            this.btnAnnuler.MinimumSize = new System.Drawing.Size(74, 38);
+            this.btnAnnuler.Name = "btnAnnuler";
+            this.btnAnnuler.Size = new System.Drawing.Size(74, 38);
+            this.btnAnnuler.TabIndex = 1;
+            this.btnAnnuler.Text = "Annuler";
+            this.btnAnnuler.UseVisualStyleBackColor = true;
             // 
             // btnOK
             // 
@@ -279,6 +270,15 @@
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // cboServices
+            // 
+            this.cboServices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboServices.FormattingEnabled = true;
+            this.cboServices.Location = new System.Drawing.Point(478, 228);
+            this.cboServices.Name = "cboServices";
+            this.cboServices.Size = new System.Drawing.Size(160, 24);
+            this.cboServices.TabIndex = 25;
             // 
             // btnAjouter
             // 

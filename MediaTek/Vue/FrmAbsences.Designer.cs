@@ -42,8 +42,8 @@
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.cboMotifs = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnOK = new System.Windows.Forms.Button();
             this.btnAnnuler = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -90,7 +90,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNomPersonnel.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.lblNomPersonnel, 2);
-            this.lblNomPersonnel.Location = new System.Drawing.Point(67, 66);
+            this.lblNomPersonnel.Location = new System.Drawing.Point(67, 82);
             this.lblNomPersonnel.Name = "lblNomPersonnel";
             this.lblNomPersonnel.Size = new System.Drawing.Size(262, 17);
             this.lblNomPersonnel.TabIndex = 0;
@@ -102,10 +102,10 @@
             this.lstAbsences.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstAbsences.FormattingEnabled = true;
             this.lstAbsences.ItemHeight = 16;
-            this.lstAbsences.Location = new System.Drawing.Point(67, 86);
+            this.lstAbsences.Location = new System.Drawing.Point(67, 102);
             this.lstAbsences.Name = "lstAbsences";
             this.tableLayoutPanel1.SetRowSpan(this.lstAbsences, 4);
-            this.lstAbsences.Size = new System.Drawing.Size(128, 307);
+            this.lstAbsences.Size = new System.Drawing.Size(128, 304);
             this.lstAbsences.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -116,7 +116,7 @@
             this.tableLayoutPanel2.Controls.Add(this.btnModifier, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnSupprimer, 0, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(201, 86);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(201, 102);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
             this.tableLayoutPanel1.SetRowSpan(this.tableLayoutPanel2, 4);
@@ -125,13 +125,13 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.125F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.125F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.8125F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(128, 307);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(128, 304);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // btnAjouter
             // 
             this.btnAjouter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAjouter.Location = new System.Drawing.Point(3, 54);
+            this.btnAjouter.Location = new System.Drawing.Point(3, 45);
             this.btnAjouter.Name = "btnAjouter";
             this.btnAjouter.Size = new System.Drawing.Size(122, 40);
             this.btnAjouter.TabIndex = 0;
@@ -141,7 +141,7 @@
             // btnModifier
             // 
             this.btnModifier.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModifier.Location = new System.Drawing.Point(3, 140);
+            this.btnModifier.Location = new System.Drawing.Point(3, 130);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(122, 40);
             this.btnModifier.TabIndex = 1;
@@ -151,7 +151,7 @@
             // btnSupprimer
             // 
             this.btnSupprimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSupprimer.Location = new System.Drawing.Point(3, 226);
+            this.btnSupprimer.Location = new System.Drawing.Point(3, 215);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(122, 40);
             this.btnSupprimer.TabIndex = 2;
@@ -162,7 +162,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(469, 93);
+            this.label2.Location = new System.Drawing.Point(469, 109);
             this.label2.MinimumSize = new System.Drawing.Size(0, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 30);
@@ -174,7 +174,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(469, 143);
+            this.label3.Location = new System.Drawing.Point(469, 159);
             this.label3.MinimumSize = new System.Drawing.Size(0, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(128, 30);
@@ -186,7 +186,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(469, 212);
+            this.label4.Location = new System.Drawing.Point(469, 209);
             this.label4.MinimumSize = new System.Drawing.Size(0, 30);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(128, 30);
@@ -197,8 +197,8 @@
             // dtpDebut
             // 
             this.dtpDebut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpDebut.Location = new System.Drawing.Point(603, 93);
-            this.dtpDebut.MinimumSize = new System.Drawing.Size(0, 30);
+            this.dtpDebut.Location = new System.Drawing.Point(603, 109);
+            this.dtpDebut.MinimumSize = new System.Drawing.Size(4, 30);
             this.dtpDebut.Name = "dtpDebut";
             this.dtpDebut.Size = new System.Drawing.Size(128, 30);
             this.dtpDebut.TabIndex = 6;
@@ -206,8 +206,8 @@
             // dtpFin
             // 
             this.dtpFin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpFin.Location = new System.Drawing.Point(603, 143);
-            this.dtpFin.MinimumSize = new System.Drawing.Size(0, 30);
+            this.dtpFin.Location = new System.Drawing.Point(603, 159);
+            this.dtpFin.MinimumSize = new System.Drawing.Size(4, 30);
             this.dtpFin.Name = "dtpFin";
             this.dtpFin.Size = new System.Drawing.Size(128, 30);
             this.dtpFin.TabIndex = 7;
@@ -216,7 +216,7 @@
             // 
             this.cboMotifs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboMotifs.FormattingEnabled = true;
-            this.cboMotifs.Location = new System.Drawing.Point(603, 215);
+            this.cboMotifs.Location = new System.Drawing.Point(603, 211);
             this.cboMotifs.Name = "cboMotifs";
             this.cboMotifs.Size = new System.Drawing.Size(128, 24);
             this.cboMotifs.TabIndex = 8;
@@ -227,36 +227,36 @@
             this.label5.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.label5, 5);
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(67, 11);
+            this.label5.Location = new System.Drawing.Point(67, 19);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(664, 31);
             this.label5.TabIndex = 9;
             this.label5.Text = "Gestion des absences";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnOK
-            // 
-            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(469, 275);
-            this.btnOK.MinimumSize = new System.Drawing.Size(0, 30);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 40);
-            this.btnOK.TabIndex = 10;
-            this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = true;
-            // 
             // btnAnnuler
             // 
             this.btnAnnuler.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAnnuler.Location = new System.Drawing.Point(603, 275);
+            this.btnAnnuler.Location = new System.Drawing.Point(603, 252);
             this.btnAnnuler.MinimumSize = new System.Drawing.Size(0, 30);
             this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(74, 40);
+            this.btnAnnuler.Size = new System.Drawing.Size(128, 40);
             this.btnAnnuler.TabIndex = 11;
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.UseVisualStyleBackColor = true;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOK.Location = new System.Drawing.Point(469, 252);
+            this.btnOK.MinimumSize = new System.Drawing.Size(0, 30);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(128, 40);
+            this.btnOK.TabIndex = 10;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
             // 
             // FrmAbsences
             // 
