@@ -14,12 +14,32 @@ namespace MediaTek.Vue
 {
     public partial class FrmAbsences : Form
     {
+        /// <summary>
+        /// Instance du contrôleur.
+        /// </summary>
         private Controle controle;
+
+        /// <summary>
+        /// Personnel sélectionné à l'ouverture du formulaire.
+        /// </summary>
         private Personnel personnel;
+
+        /// <summary>
+        /// Liste faisant le lien entre la liste des absences du personnel et l'objet graphique listbox.
+        /// </summary>
         private BindingList<Absence> bindingList;
+
+        /*
+         * Constantes représentant les modes d'ajout et de modification.
+         */
         private const int MODIFICATION = 2;
         private const int AJOUT = 1;
 
+        /// <summary>
+        /// Constructeur du formulaire : Initialise les objets graphiques, leur contenu, et l'accès à la zone de saisie.
+        /// </summary>
+        /// <param name="controle">Instance du contrôleur</param>
+        /// <param name="personnel">Personnel sélectionné dans le formulaire de personnel.</param>
         public FrmAbsences(Controle controle, Personnel personnel)
         {
             this.controle = controle;
@@ -28,6 +48,9 @@ namespace MediaTek.Vue
             init();
         }
 
+        /// <summary>
+        /// Initialise le contenu des objets graphiques.
+        /// </summary>
         public void init()
         {
             bindingList = new BindingList<Absence>(personnel.Absences);
@@ -38,51 +61,58 @@ namespace MediaTek.Vue
                 cboMotifs.Items.Add(motif);
             }
 
-            accederEditionAbences(false);
+            AccederEditionAbences(false);
         }
 
-        public void accederEditionAbences(bool acces, int mode = 0)
-        {
-            lstAbsences.Enabled = !acces;
-            dtpDebut.Enabled = acces;
-            dtpFin.Enabled = acces;
-            cboMotifs.Enabled = acces;
-            pnlOKButtons.Enabled = acces;
-            btnAnnuler.Enabled = acces;
-
-
-            switch (mode)
-            {
-                case MODIFICATION: btnOKEdit.Visible = true; btnOKAjout.Visible = false; lblMode.Text = "Modifier"; break;
-                case AJOUT: btnOKEdit.Visible = false; btnOKAjout.Visible = true; lblMode.Text = "Ajouter"; break;
-                default: btnOKEdit.Visible = true; btnOKAjout.Visible = false; lblMode.Text = ""; break;
-            }
-        }
-
+        /// <summary>
+        /// Donne l'accès à la zone d'ajout d'absence.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            accederEditionAbences(true, AJOUT);
+            if (lstAbsences.SelectedIndex != -1) AccederEditionAbences(true, AJOUT);
+            else ErreurPasDeSelection();
         }
 
+        /// <summary>
+        /// Donne l'accès à la zone d'édition d'absence.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModifier_Click(object sender, EventArgs e)
         {
-            accederEditionAbences(true, MODIFICATION);
-            Absence absence = (Absence)lstAbsences.SelectedItem;
-            dtpDebut.Value = absence.DateDebut;
-            dtpFin.Value = absence.DateFin;
-            cboMotifs.SelectedItem = Absence.Motifs[absence.Motif];
+            if (lstAbsences.SelectedIndex != -1)
+            {
+                AccederEditionAbences(true, MODIFICATION);
+                Absence absence = (Absence)lstAbsences.SelectedItem;
+                dtpDebut.Value = absence.DateDebut;
+                dtpFin.Value = absence.DateFin;
+                cboMotifs.SelectedItem = Absence.Motifs[absence.Motif];
+            }
+            else ErreurPasDeSelection();            
         }
 
+        /// <summary>
+        /// Supprime l'absence sélectionnée après confirmation de l'utilisateur.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
             DialogResult choix = MessageBox.Show($"Confirmer la suppression ?", "Confirmation", MessageBoxButtons.YesNo);
             if (choix == DialogResult.Yes)
             {
-                controle.SupprAbsence(personnel, (Absence)lstAbsences.SelectedItem);
+                controle.SupprAbsence((Absence)lstAbsences.SelectedItem);
                 bindingList.ResetBindings();
             }
         }
 
+        /// <summary>
+        /// Modifie l'abence sélectionnée après confirmation de l'utilisateur.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOKEdit_Click(object sender, EventArgs e)
         {
             DialogResult choix = MessageBox.Show($"Confirmer la modification ?", "Confirmation", MessageBoxButtons.YesNo);
@@ -91,7 +121,7 @@ namespace MediaTek.Vue
                 if (controle.ModifAbsence((Absence)lstAbsences.SelectedItem, dtpDebut.Value, dtpFin.Value, cboMotifs.SelectedIndex + 1))
                 {
                     bindingList.ResetBindings();
-                    reinitialiseChamps();
+                    ReinitialiseChamps();
                 }
 
                 else
@@ -100,13 +130,17 @@ namespace MediaTek.Vue
                 }
             }                
         }
-
+        /// <summary>
+        /// Ajoute l'abence après confirmation de l'utilisateur.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOKAjout_Click(object sender, EventArgs e)
         {
             if (controle.AjoutAbsence(personnel, dtpDebut.Value, dtpFin.Value, cboMotifs.SelectedIndex + 1))
             {
                 bindingList.ResetBindings();
-                reinitialiseChamps();
+                ReinitialiseChamps();
             }
             else
             {
@@ -114,19 +148,21 @@ namespace MediaTek.Vue
             }
         }
 
+        /// <summary>
+        /// Annule la saisie: Réinitialisation des champs et fermeture de l'accès à la zone de saisie.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAnnuler_Click(object sender, EventArgs e)
         {
-            reinitialiseChamps();
+            ReinitialiseChamps();
         }
 
-        private void reinitialiseChamps()
-        {
-            dtpDebut.Value = DateTime.Today;
-            dtpFin.Value = DateTime.Today;
-            cboMotifs.SelectedIndex = 0;
-            accederEditionAbences(false);
-        }
-
+        /// <summary>
+        /// Raccourci de suppression d'une absence.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstAbsences_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
@@ -135,9 +171,54 @@ namespace MediaTek.Vue
             }
         }
 
+        /// <summary>
+        /// Raccourci de modification d'une absence.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstAbsences_DoubleClick(object sender, EventArgs e)
         {
             btnModifier_Click(null, null);
+        }
+
+        /// <summary>
+        /// Gère l'accès aux controles d'édition des absences.
+        /// </summary>
+        /// <param name="acces">True pour donner l'accès, false pour l'enlever.</param>
+        /// <param name="mode">1 : Ajout; 2 : Modification.</param>
+        public void AccederEditionAbences(bool acces, int mode = 0)
+        {
+            lstAbsences.Enabled = !acces;
+            dtpDebut.Enabled = acces;
+            dtpFin.Enabled = acces;
+            cboMotifs.Enabled = acces;
+            pnlOKButtons.Enabled = acces;
+            btnAnnuler.Enabled = acces;
+            switch (mode)
+            {
+                case MODIFICATION: btnOKEdit.Visible = true; btnOKAjout.Visible = false; lblMode.Text = "Modifier"; break;
+                case AJOUT: btnOKEdit.Visible = false; btnOKAjout.Visible = true; lblMode.Text = "Ajouter"; break;
+                default: btnOKEdit.Visible = true; btnOKAjout.Visible = false; lblMode.Text = ""; break;
+            }
+        }
+
+        /// <summary>
+        /// Réinitialise les champs de la zone de saisie.
+        /// </summary>
+        private void ReinitialiseChamps()
+        {
+            dtpDebut.Value = DateTime.Today;
+            dtpFin.Value = DateTime.Today;
+            cboMotifs.SelectedIndex = 0;
+            AccederEditionAbences(false);
+        }
+
+        /// <summary>
+        /// Affichage d'erreur quand aucune absence n'est sélectionnée.
+        /// </summary>
+        private void ErreurPasDeSelection()
+        {
+            MessageBox.Show("Aucune absence n'est sélectionnée ", "Action impossible");
         }
     }
 }

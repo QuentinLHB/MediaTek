@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace MediaTek.Controleur
 {
+    /// <summary>
+    /// Contrôleur de l'application.
+    /// </summary>
     public class Controle
     {
         private List<Personnel> lesPersonnels;
@@ -26,7 +29,7 @@ namespace MediaTek.Controleur
 
         }
 
-        public void Authentification(string login, string pwd) // DECOMMENTER
+        public void Authentification(string login, string pwd)
         {
             if (AccesDonnees.ControleAuthentification(login, pwd))
             {
@@ -35,10 +38,8 @@ namespace MediaTek.Controleur
                 frmPersonnel = new FrmPersonnel(this);
             }
 
-            else
-            {
-                MessageBox.Show("Identifiant ou mot de passe incorrect.", "Connexion impossible");
-            }
+            else frmConnexion.ErreurConnexion();
+            
         }
 
         public List<Personnel> GetPersonnels()
@@ -47,16 +48,15 @@ namespace MediaTek.Controleur
         }
 
         /// <summary>
-        /// Ajout d'un nouveau personnel à la base de données, et affichage.
+        /// Ajoute un nouveau personnel à la base de données, et l'affiche.
         /// </summary>
-        /// <param name="nom"></param>
-        /// <param name="prenom"></param>
-        /// <param name="mail"></param>
-        /// <param name="tel"></param>
-        /// <param name="idService"></param>
+        /// <param name="nom">Nom du nouveau personnel.</param>
+        /// <param name="prenom">Prénom du nouveau personnel</param>
+        /// <param name="mail">Mail du nouveau personnel</param>
+        /// <param name="tel">Numéro de téléphone du nouveau personnel</param>
+        /// <param name="idService">Identifiant du service du nouveau personnel</param>
         public void AjoutPersonnel(string nom, string prenom, string mail, string tel, int idService)
-        {          
-            
+        {                    
             Personnel nvoPersonnel = new Personnel(nom, prenom, tel, mail, idService);
             lesPersonnels.Add(nvoPersonnel);
             AccesDonnees.AjoutPersonnel(nvoPersonnel);
@@ -64,7 +64,7 @@ namespace MediaTek.Controleur
         }
 
         /// <summary>
-        /// Modification des informations d'un personnel dans la base données, et affichage de la modification.
+        /// Modifie les informations d'un personnel dans la base données, et affichage de la modification.
         /// </summary>
         /// <param name="personnel">Personnel concerné.</param>
         /// <param name="nom">Nom mis à jour.</param>
@@ -82,12 +82,24 @@ namespace MediaTek.Controleur
             AccesDonnees.ModifPersonnel(personnel);
         }
 
+        /// <summary>
+        /// Supprime un personnel de la base de données, et son affichage.
+        /// </summary>
+        /// <param name="personnel"Personnel à supprimer.</param>
         public void SupprPersonnel(Personnel personnel)
         {
-            lesPersonnels.Remove(personnel);
             AccesDonnees.SupprPersonnel(personnel);
+            lesPersonnels.Remove(personnel);            
         }
 
+        /// <summary>
+        /// Ajoute une nouvelle absence à la base de données, et l'affiche.
+        /// </summary>
+        /// <param name="personnel">Personnel concerné par l'absence.</param>
+        /// <param name="dateDebut">Date de début de l'absence.</param>
+        /// <param name="dateFin">Date de fin de l'absence.</param>
+        /// <param name="idMotif">Identifiant du motif de l'absence.</param>
+        /// <returns></returns>
         public bool AjoutAbsence(Personnel personnel, DateTime dateDebut, DateTime dateFin, int idMotif)
         {
             if(VerifieDateUnique(personnel, dateDebut))
@@ -101,6 +113,14 @@ namespace MediaTek.Controleur
 
         }
 
+        /// <summary>
+        /// Modification d'une absence du personnel.
+        /// </summary>
+        /// <param name="absence">Absence concernée.</param>
+        /// <param name="nvelleDateDebut">Nouvelle date de début.</param>
+        /// <param name="nvelleDateFin">Nouvelle date de fin.</param>
+        /// <param name="nvelIdMotif">Identifiant du nouveau motif.</param>
+        /// <returns></returns>
         public bool ModifAbsence(Absence absence, DateTime nvelleDateDebut, DateTime nvelleDateFin, int nvelIdMotif)
         {
             if (VerifieDateUnique(absence.LePersonnel, nvelleDateDebut))
@@ -114,10 +134,15 @@ namespace MediaTek.Controleur
             return false;
         }
 
-        public void SupprAbsence(Personnel personnel, Absence abence)
+        /// <summary>
+        /// Suppression d'une absence.
+        /// </summary>
+        /// <param name="personnel">Personnel concerné.</param>
+        /// <param name="absence">Abence à supprimer.</param>
+        public void SupprAbsence(Absence absence)
         {
-            personnel.Absences.Remove(abence);
-            
+            AccesDonnees.SupprAbsence(absence);
+            absence.LePersonnel.Absences.Remove(absence);            
         }
 
         private bool VerifieDateUnique(Personnel personnel, DateTime dateDebut)
@@ -126,7 +151,6 @@ namespace MediaTek.Controleur
             {
                 if (absence.DateDebut.Equals(dateDebut)) return false;
             }
-
             return true;
         }
     }

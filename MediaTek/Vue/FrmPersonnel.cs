@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MediaTek.Modele;
 using MediaTek.Controleur;
@@ -32,6 +26,10 @@ namespace MediaTek.Vue
         /// </summary>
         private Controle controle;
 
+        /// <summary>
+        /// Constructueur : Initialise les objets graphiques, leur contenu, et le contrôleur.
+        /// </summary>
+        /// <param name="controle">Contrôleur</param>
         public FrmPersonnel(Controle controle)
         {
             this.controle = controle;
@@ -47,7 +45,7 @@ namespace MediaTek.Vue
         {
             bindingList = new BindingList<Personnel>(controle.LesPersonnels);
             lstPersonnel.DataSource = bindingList;
-            accederEditionPersonnel(false);
+            AccesEditionPersonnel(false);
 
             foreach(string service in Personnel.Services.Values)
             {
@@ -61,10 +59,16 @@ namespace MediaTek.Vue
             {
                 MessageBox.Show("Les données n'ont pas pu être chargées. Vérifiez votre connexion à la base de données.");
             }
-
-
         }
 
+        /*
+         * Procédures évènementielles
+         */
+        /// <summary>
+        /// Ouvre le formulaire de gestion d'absences si un personnel est sélectionné.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAbsences_Click(object sender, EventArgs e)
         {
             if(lstPersonnel.SelectedIndex != 1)
@@ -74,109 +78,20 @@ namespace MediaTek.Vue
             }
             else
             {
-                //Msg erreur
+                ErreurPasDeSelection();
             }
   
         }
 
+        /// <summary>
+        /// Ouvre l'accès aux zones de saisie d'un nouveau personnel.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            accederEditionPersonnel(true, AJOUT);
-        }
-
-        private void btnAnnuler_Click(object sender, EventArgs e)
-        {
-            videSaisie();
-            accederEditionPersonnel(false);
-        }
-
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            if (verifieChamps())
-            {
-                controle.AjoutPersonnel(txtNom.Text, txtPrenom.Text, txtTel.Text, txtMail.Text, cboServices.SelectedIndex+1);
-                validationOK();
-            }
-            else
-            {
-                MessageBox.Show("Merci de remplir tous les champs.", "Ajout impossible");
-            }            
-
-        }
-
-        private void btnOKEdit_Click(object sender, EventArgs e)
-        {
-            if (verifieChamps())
-            {
-                DialogResult choix = MessageBox.Show($"Confirmer la modification ?",
-                "Confirmation", MessageBoxButtons.YesNo);
-                if (choix == DialogResult.Yes)
-                {
-                    controle.ModifPersonnel((Personnel)lstPersonnel.SelectedItem, txtNom.Text, txtPrenom.Text, txtMail.Text, txtTel.Text, cboServices.SelectedIndex + 1);
-                    validationOK();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Aucun personnel n'est sélectionné.", "Modification impossible.");
-            }
-    
-        }
-
-        private void validationOK()
-        {
-            bindingList.ResetBindings();
-            videSaisie();
-            accederEditionPersonnel(false);
-            
-        }
-
-        /// <summary>
-        /// Détermine l'accès aux controles d'édition de personnel (textbox, bouttons, liste du personnel).
-        /// </summary>
-        /// <param name="acces">True donne l'accès, false le retire.</param>
-        public void accederEditionPersonnel(bool acces, int mode = 0)
-        {
-            lstPersonnel.Enabled = !acces;
-            tblSaisie.Enabled = acces;
-            pnlOKButtons.Enabled = acces;
-            btnAnnuler.Enabled = acces;
-
-
-            switch (mode)
-            {
-                case MODIFICATION: btnOKEdit.Visible = true; btnOKAjout.Visible = false; lblTitreChoix.Text = "Modifier"; break;
-                case AJOUT: btnOKEdit.Visible = false; btnOKAjout.Visible = true; lblTitreChoix.Text = "Ajouter";  break;
-                default: btnOKEdit.Visible = true; btnOKAjout.Visible = false; lblTitreChoix.Text = ""; break;
-            }
-        }
-
-        private void videSaisie()
-        {
-            foreach (Control control in tblSaisie.Controls)
-            {
-                if (control is TextBox)
-                {
-                    control.Text = "";
-                }
-            }
-            cboServices.SelectedIndex = 0;
-        }
-
-        /// <summary>
-        /// Vérifie si les champs sont tous complétés.
-        /// </summary>
-        /// <returns></returns>
-        private bool verifieChamps()
-        {
-            foreach (Control control in tblSaisie.Controls)
-            {
-                if (control is TextBox && control.Text == "")
-                {
-                    return false;
-                }
-            }
-            return true;
+            AccesEditionPersonnel(true, AJOUT);
+            txtNom.Focus();
         }
 
         /// <summary>
@@ -195,7 +110,8 @@ namespace MediaTek.Vue
                 txtMail.Text = personnel.Mail;
                 cboServices.SelectedItem = personnel.Service;
 
-                accederEditionPersonnel(true, MODIFICATION);
+                AccesEditionPersonnel(true, MODIFICATION);
+                txtNom.Focus();
             }
         }
 
@@ -209,9 +125,9 @@ namespace MediaTek.Vue
             if (lstPersonnel.SelectedIndex != -1)
             {
                 Personnel personnel = (Personnel)lstPersonnel.SelectedItem;
-                DialogResult choix = MessageBox.Show($"Voulez vous vraiment supprimer {personnel.Nom} {personnel.Prenom} ?", 
+                DialogResult choix = MessageBox.Show($"Voulez vous vraiment supprimer {personnel.Nom} {personnel.Prenom} ?",
                 "Confirmation", MessageBoxButtons.YesNo);
-                if(choix == DialogResult.Yes)
+                if (choix == DialogResult.Yes)
                 {
                     controle.SupprPersonnel(personnel);
                     bindingList.ResetBindings();
@@ -232,6 +148,16 @@ namespace MediaTek.Vue
         {
             btnModifier_Click(null, null);
         }
+        /// <summary>
+        /// Annule la saisie : Réinitialise les champs et empêche la saisie d'informations.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAnnuler_Click(object sender, EventArgs e)
+        {
+            VideSaisie();
+            AccesEditionPersonnel(false);
+        }
 
         /// <summary>
         /// Raccourci du bouton "Supprimer", avec la touche "Suppr".
@@ -245,5 +171,120 @@ namespace MediaTek.Vue
                 btnSupprimer_Click(null, null);
             }
         }
+
+        /// <summary>
+        /// Ajoute un personnel avec les informations entrées.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (VerifieChamps())
+            {
+                controle.AjoutPersonnel(txtNom.Text, txtPrenom.Text, txtTel.Text, txtMail.Text, cboServices.SelectedIndex+1);
+                ValidationBtnOK();
+            }
+            else
+            {
+                MessageBox.Show("Merci de remplir tous les champs.", "Ajout impossible");
+            }            
+
+        }
+
+        /// <summary>
+        /// Edite le personnel sélectionné avec les informations entrées.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOKEdit_Click(object sender, EventArgs e)
+        {
+            if (VerifieChamps())
+            {
+                DialogResult choix = MessageBox.Show($"Confirmer la modification ?",
+                "Confirmation", MessageBoxButtons.YesNo);
+                if (choix == DialogResult.Yes)
+                {
+                    controle.ModifPersonnel((Personnel)lstPersonnel.SelectedItem, txtNom.Text, txtPrenom.Text, txtMail.Text, txtTel.Text, cboServices.SelectedIndex + 1);
+                    ValidationBtnOK();
+                }
+            }
+            else ErreurPasDeSelection();           
+        }
+
+        /*
+         * Fonctions
+         */
+
+        /// <summary>
+        /// Affiche un message d'erreur si aucun personnel n'est sélectionné.
+        /// </summary>
+        private void ErreurPasDeSelection()
+        {
+            MessageBox.Show("Aucun personnel n'est sélectionné.", "Action impossible.");
+        }
+
+        /// <summary>
+        /// Actualise la liste du personnel et ferme l'accès à la zone de saisie.
+        /// </summary>
+        private void ValidationBtnOK()
+        {
+            bindingList.ResetBindings();
+            VideSaisie();
+            AccesEditionPersonnel(false);
+            
+        }
+
+        /// <summary>
+        /// Gère l'accès aux controles d'édition de personnel (textbox, bouttons, liste du personnel).
+        /// </summary>
+        /// <param name="acces">True donne l'accès, false le retire.</param>
+        public void AccesEditionPersonnel(bool acces, int mode = 0)
+        {
+            lstPersonnel.Enabled = !acces;
+            tblSaisie.Enabled = acces;
+            pnlOKButtons.Enabled = acces;
+            btnAnnuler.Enabled = acces;
+
+
+            switch (mode)
+            {
+                case MODIFICATION: btnOKEdit.Visible = true; btnOKAjout.Visible = false; lblTitreChoix.Text = "Modifier"; break;
+                case AJOUT: btnOKEdit.Visible = false; btnOKAjout.Visible = true; lblTitreChoix.Text = "Ajouter";  break;
+                default: btnOKEdit.Visible = true; btnOKAjout.Visible = false; lblTitreChoix.Text = ""; break;
+            }
+        }
+
+        /// <summary>
+        /// Vide les textbox et réinitialise le combo.
+        /// </summary>
+        private void VideSaisie()
+        {
+            foreach (Control control in tblSaisie.Controls)
+            {
+                if (control is TextBox)
+                {
+                    control.Text = "";
+                }
+            }
+            cboServices.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Vérifie si les champs sont tous complétés.
+        /// </summary>
+        /// <returns></returns>
+        private bool VerifieChamps()
+        {
+            foreach (Control control in tblSaisie.Controls)
+            {
+                if (control is TextBox && control.Text == "")
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
     }
 }

@@ -8,6 +8,9 @@ using MediaTek.Modele;
 
 namespace MediaTek.dal
 {
+    /// <summary>
+    /// Classe effectuant les requêtes SQL nécessaires à l'extraction et à la mise à jour de la base de données.
+    /// </summary>
     public class AccesDonnees
     {
         /// <summary>
@@ -16,11 +19,10 @@ namespace MediaTek.dal
         private static string connectionString = "server=localhost;user id=admin;password=mdpadmin;database=mediatek";
 
         /// <summary>
-        /// Controle si l'utillisateur a le droit de se connecter (nom, prénom, pwd est profil "admin")
+        /// Controle si l'utillisateur a le droit de se connecter (login et pwd)
         /// </summary>
-        /// <param name="login"></param>
-        /// <param name="prenom"></param>
-        /// <param name="pwd"></param>
+        /// <param name="login">Identifiant entré</param>
+        /// <param name="pwd">Mot  de passe entré.</param>
         /// <returns></returns>
         public static Boolean ControleAuthentification(string login, string pwd)
         {
@@ -70,9 +72,12 @@ namespace MediaTek.dal
             return personnels;
         }
 
+        /// <summary>
+        /// Remplit les absences d'un personnel.
+        /// </summary>
+        /// <param name="personnel">Personnel concerné</param>
         public static void SetAbsences(Personnel personnel)
-        {
-            
+        {            
             string req = "select p.idpersonnel, a.DATEDEBUT, a.DATEFIN, a.IDMOTIF from personnel p JOIN absence a USING (idpersonnel)";
             req += " where p.idpersonnel = @idpersonnel";
             ConnexionBDD curseur = ConnexionBDD.GetInstance(connectionString);
@@ -84,9 +89,7 @@ namespace MediaTek.dal
                 personnel.Absences.Add(new Absence(personnel, (DateTime)curseur.Field("datedebut"), (DateTime)curseur.Field("datefin"), (int)curseur.Field("idmotif")));
             }
             curseur.Close();
-
         }
-
 
         /// <summary>
         /// Remplit le dictionnaire des services s'il n'a pas déjà été initialisé.
@@ -107,6 +110,9 @@ namespace MediaTek.dal
 
         }
 
+        /// <summary>
+        /// Remplit le dictionnaire des motifs s'il n'a pas déjà été initialisé.
+        /// </summary>
         private static void SetMotifs()
         {
             if (Absence.Motifs.Count == 0)
@@ -121,7 +127,6 @@ namespace MediaTek.dal
                 curseur.Close();
             }
         }
-
 
         /// <summary>
         /// Ajoute un personnel à la base de données.
@@ -171,6 +176,10 @@ namespace MediaTek.dal
             conn.ReqUpdate(req, parameters);
         }
 
+        /// <summary>
+        /// Supprime un personnel de la base de données.
+        /// </summary>
+        /// <param name="personnel">Personnel concerné.</param>
         public static void SupprPersonnel(Personnel personnel)
         {
             string req = "delete from personnel where idpersonnel = @idpersonnel;";
@@ -198,6 +207,10 @@ namespace MediaTek.dal
             return max;
         }
 
+        /// <summary>
+        /// Ajoute une absence à la base de données.
+        /// </summary>
+        /// <param name="absence">Absence à ajouter.</param>
         public static void AjoutAbsence(Absence absence)
         {
             string req = "insert into absence(idpersonnel, datedebut, datefin, idmotif)";
@@ -211,6 +224,10 @@ namespace MediaTek.dal
             curseur.ReqUpdate(req, parameters);
         }
 
+        /// <summary>
+        /// Modifie une absence dans la base de données.
+        /// </summary>
+        /// <param name="absence">Absence à modifier.</param>
         public static void ModifAbence(Absence absence)
         {
             string req = "update absence";
@@ -225,6 +242,10 @@ namespace MediaTek.dal
             conn.ReqUpdate(req, parameters);
         }
 
+        /// <summary>
+        /// Supprime une absence.
+        /// </summary>
+        /// <param name="absence">Absence à supprimer.</param>
         public static void SupprAbsence(Absence absence)
         {
             string req = "delete from absence where idpersonnel = @idpersonnel and datedebut = @datedebut;";

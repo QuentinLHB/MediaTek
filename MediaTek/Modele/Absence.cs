@@ -11,26 +11,40 @@ namespace MediaTek.Modele
     /// </summary>
     public class Absence
     {
-
+        /// <summary>
+        /// Dictionnaire contenant les identifiants et les libellés des motifs associés.
+        /// </summary>
         private static Dictionary<int, string> lesMotifs = new Dictionary<int, string>();
+        /// <summary>
+        /// Obtient le dictionnaire des motifs (identifiants-libellés)
+        /// </summary>
         public static Dictionary<int, string> Motifs { get => lesMotifs; }
 
         /// <summary>
         /// Début de l'absence.
         /// </summary>
         private DateTime dateDebut;
+        /// <summary>
+        /// Obtient ou définit la date de début de l'absence.
+        /// </summary>
         public DateTime DateDebut { get => dateDebut; set => dateDebut = value; }
 
         /// <summary>
         /// Fin de l'absence.
         /// </summary>
         private DateTime dateFin;
+        /// <summary>
+        /// Obtient ou définit la date de fin de l'absence.
+        /// </summary>
         public DateTime DateFin { get => dateFin; set => dateFin = value; }
 
         /// <summary>
         /// Personnel concerné.
         /// </summary>
         private Personnel personnel;
+        /// <summary>
+        /// Obtient le personnel lié à l'absence.
+        /// </summary>
         public Personnel LePersonnel { get => personnel; }
 
 
@@ -38,6 +52,9 @@ namespace MediaTek.Modele
         /// Motif de l'absence.
         /// </summary>
         private int motif;
+        /// <summary>
+        /// Obtient ou définit le motif de l'absence.
+        /// </summary>
         public int Motif { get => motif; set => motif = value; }
 
         /*
@@ -58,7 +75,7 @@ namespace MediaTek.Modele
         }
 
         /// <summary>
-        /// Constructeur d'une absence débutée mais pas terminée.
+        /// Constructeur d'une absence débutée mais pas terminée. (pas utilisé dans l'application)
         /// </summary>
         /// <param name="personnel"></param>
         /// <param name="dateDebut"></param>
@@ -66,16 +83,24 @@ namespace MediaTek.Modele
         {
             this.personnel = personnel;
             this.dateDebut = dateDebut;
-
         }
 
+        /// <summary>
+        /// Affiche une absence.
+        /// </summary>
+        /// <example>01/01/21 - 31/01/21 (vacances)</example>
+        /// <returns>Texte de l'absence.</returns>
         public override string ToString()
         {
             if (dateFin == null) return $"{afficheDate(dateDebut)}";
             else return $"{afficheDate(dateDebut)} - {afficheDate(DateFin)} ({lesMotifs[motif]})";
         }
 
-
+        /// <summary>
+        /// Convertit un objet DateTime en un format JJ/MM/AA.
+        /// </summary>
+        /// <param name="date">Date à convertir.</param>
+        /// <returns>Une chaîne de caractère au format JJ/MM/AA.</returns>
         private string afficheDate(DateTime date)
         {
             return $"{DateDeuxDigits(date.Day)}/{DateDeuxDigits(date.Month)}/{DateDeuxDigits(date.Year)}";
