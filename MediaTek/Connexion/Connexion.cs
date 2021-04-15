@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms;
 
 namespace MediaTek.Connexion
 {
@@ -43,7 +44,7 @@ namespace MediaTek.Connexion
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                //Application.Exit();
+                Application.Exit();
             }
         }
 

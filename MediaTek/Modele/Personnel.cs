@@ -9,13 +9,17 @@ namespace MediaTek.Modele
     /// <summary>
     /// Personnel de la médiathèque.
     /// </summary>
-    class Personnel
+    public class Personnel
     {
 
         /// <summary>
         /// Services.
         /// </summary>
-        private static Dictionary<int, string> lesServices;
+        private static Dictionary<int, string> lesServices = new Dictionary<int, string>();
+        public static Dictionary<int, string> Services { get => lesServices; }
+
+        private int idPersonnel;
+        public int IdPersonnel { get => idPersonnel; set => idPersonnel = value; }
 
         /// <summary>
         /// Nom du personnel.
@@ -42,20 +46,34 @@ namespace MediaTek.Modele
 
         public string Tel { get => tel; set => tel = value; }
 
+        private List<Absence> lesAbsences = new List<Absence>();
+        public List<Absence> Absences { get => lesAbsences; }
+
         /// <summary>
         /// Service occupé par le personnel.
         /// </summary>
         /// <returns></returns>
-        private string service;
-        public string Service { get => service; set => service = value; }
+        private int idService;
+        public int IdService { get => idService; set => idService = value; }
+        public string Service { get => Services[idService]; }
 
-        public Personnel(string nom, string prenom, string mail, string tel, string service)
+        public Personnel(int idDeveloppeur, string nom, string prenom, string mail, string tel, int service) : this(nom, prenom, mail, tel, service)
         {
-            this.nom = nom;
+            this.idPersonnel = idDeveloppeur;            
+        }
+
+        public Personnel(string nom, string prenom, string mail, string tel, int service)
+        {
+            this.nom = nom.ToUpper();
             this.prenom = prenom;
             this.mail = mail;
             this.tel = tel;
-            this.service = service;
+            this.idService = service;
+        }
+
+        public override string ToString()
+        {
+            return $"{nom} {prenom} ({Service})";
         }
     }
 }

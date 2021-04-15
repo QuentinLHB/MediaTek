@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MediaTek.Vue;
+using MediaTek.Controleur;
 
 namespace MediaTek
 {
@@ -17,7 +18,7 @@ namespace MediaTek
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmConnexion());
+            new Controle();
         }
     }
 }
