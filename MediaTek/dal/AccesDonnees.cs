@@ -78,8 +78,9 @@ namespace MediaTek.dal
         /// <param name="personnel">Personnel concerné</param>
         public static void SetAbsences(Personnel personnel)
         {            
-            string req = "select p.idpersonnel, a.DATEDEBUT, a.DATEFIN, a.IDMOTIF from personnel p JOIN absence a USING (idpersonnel)";
+            string req = "select p.idpersonnel, a.datedebut, a.datefin, a.idmotif from personnel p JOIN absence a USING (idpersonnel)";
             req += " where p.idpersonnel = @idpersonnel";
+            req += " order by datedebut DESC";
             ConnexionBDD curseur = ConnexionBDD.GetInstance(connectionString);
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@idpersonnel", personnel.IdPersonnel);

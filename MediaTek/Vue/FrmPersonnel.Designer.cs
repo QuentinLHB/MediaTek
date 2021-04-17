@@ -34,7 +34,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lstPersonnel = new System.Windows.Forms.ListBox();
             this.lblTitreChoix = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -54,6 +53,7 @@
             this.txtTel = new System.Windows.Forms.TextBox();
             this.txtNom = new System.Windows.Forms.TextBox();
             this.txtPrenom = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.personnelBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -161,19 +161,6 @@
             this.lblTitreChoix.TabIndex = 13;
             this.lblTitreChoix.Text = "Modifier";
             // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label2.Location = new System.Drawing.Point(622, 55);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 20);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Nom :";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -238,7 +225,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(229, 75);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -264,6 +251,7 @@
             this.pnlOKButtons.Controls.Add(this.btnOKAjout);
             this.pnlOKButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlOKButtons.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
+            this.pnlOKButtons.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(54)))));
             this.pnlOKButtons.Location = new System.Drawing.Point(3, 3);
             this.pnlOKButtons.Name = "pnlOKButtons";
             this.pnlOKButtons.Size = new System.Drawing.Size(108, 69);
@@ -290,7 +278,7 @@
             this.btnOKAjout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(228)))), ((int)(((byte)(250)))));
             this.btnOKAjout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnOKAjout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOKAjout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(228)))), ((int)(((byte)(250)))));
+            this.btnOKAjout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(54)))));
             this.btnOKAjout.Location = new System.Drawing.Point(0, 0);
             this.btnOKAjout.MinimumSize = new System.Drawing.Size(74, 38);
             this.btnOKAjout.Name = "btnOKAjout";
@@ -395,7 +383,7 @@
             this.cboServices.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.cboServices.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(54)))));
             this.cboServices.FormattingEnabled = true;
-            this.cboServices.Location = new System.Drawing.Point(3, 341);
+            this.cboServices.Location = new System.Drawing.Point(3, 338);
             this.cboServices.Name = "cboServices";
             this.cboServices.Size = new System.Drawing.Size(223, 29);
             this.cboServices.TabIndex = 4;
@@ -443,6 +431,19 @@
             this.txtPrenom.Name = "txtPrenom";
             this.txtPrenom.Size = new System.Drawing.Size(223, 28);
             this.txtPrenom.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label2.Location = new System.Drawing.Point(622, 55);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 20);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Nom :";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel1
             // 

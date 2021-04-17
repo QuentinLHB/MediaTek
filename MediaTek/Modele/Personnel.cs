@@ -128,5 +128,10 @@ namespace MediaTek.Modele
         {
             return $"{nom} {prenom} ({Service})";
         }
+
+        public void TrieAbsences()
+        {
+            lesAbsences = lesAbsences.OrderByDescending(o => o.DateDebut).ToList();
+        }
     }
 }

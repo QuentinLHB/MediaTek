@@ -44,14 +44,16 @@
             this.pnlOKButtons = new System.Windows.Forms.Panel();
             this.btnOKEdit = new System.Windows.Forms.Button();
             this.btnOKAjout = new System.Windows.Forms.Button();
-            this.btnAnnuler = new System.Windows.Forms.Button();
             this.lblMode = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnAnnuler = new System.Windows.Forms.Button();
             this.tlpGeneral.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.pnlOKButtons.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlpGeneral
@@ -75,9 +77,9 @@
             this.tlpGeneral.Controls.Add(this.dtpFin, 5, 4);
             this.tlpGeneral.Controls.Add(this.cboMotifs, 5, 5);
             this.tlpGeneral.Controls.Add(this.pnlOKButtons, 4, 6);
-            this.tlpGeneral.Controls.Add(this.btnAnnuler, 5, 6);
             this.tlpGeneral.Controls.Add(this.lblMode, 4, 2);
             this.tlpGeneral.Controls.Add(this.panel1, 0, 0);
+            this.tlpGeneral.Controls.Add(this.panel2, 5, 6);
             this.tlpGeneral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpGeneral.Location = new System.Drawing.Point(0, 0);
             this.tlpGeneral.Name = "tlpGeneral";
@@ -301,31 +303,18 @@
             // 
             this.btnOKAjout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOKAjout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(228)))), ((int)(((byte)(250)))));
+            this.btnOKAjout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOKAjout.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
+            this.btnOKAjout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(54)))));
             this.btnOKAjout.Location = new System.Drawing.Point(-3, 3);
             this.btnOKAjout.MinimumSize = new System.Drawing.Size(0, 30);
             this.btnOKAjout.Name = "btnOKAjout";
             this.btnOKAjout.Size = new System.Drawing.Size(134, 40);
             this.btnOKAjout.TabIndex = 11;
             this.btnOKAjout.Text = "OK";
-            this.btnOKAjout.UseVisualStyleBackColor = true;
+            this.btnOKAjout.UseVisualStyleBackColor = false;
             this.btnOKAjout.Click += new System.EventHandler(this.btnOKAjout_Click);
-            // 
-            // btnAnnuler
-            // 
-            this.btnAnnuler.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAnnuler.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(228)))), ((int)(((byte)(250)))));
-            this.btnAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnnuler.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
-            this.btnAnnuler.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(54)))));
-            this.btnAnnuler.Location = new System.Drawing.Point(682, 269);
-            this.btnAnnuler.MinimumSize = new System.Drawing.Size(0, 30);
-            this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(149, 40);
-            this.btnAnnuler.TabIndex = 11;
-            this.btnAnnuler.Text = "Annuler";
-            this.btnAnnuler.UseVisualStyleBackColor = false;
-            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
             // lblMode
             // 
@@ -363,6 +352,32 @@
             this.label5.Text = "Gestion des absences";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnAnnuler);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(682, 269);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(149, 159);
+            this.panel2.TabIndex = 15;
+            // 
+            // btnAnnuler
+            // 
+            this.btnAnnuler.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAnnuler.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(228)))), ((int)(((byte)(250)))));
+            this.btnAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAnnuler.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
+            this.btnAnnuler.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(54)))));
+            this.btnAnnuler.Location = new System.Drawing.Point(0, 3);
+            this.btnAnnuler.MinimumSize = new System.Drawing.Size(0, 30);
+            this.btnAnnuler.Name = "btnAnnuler";
+            this.btnAnnuler.Size = new System.Drawing.Size(149, 40);
+            this.btnAnnuler.TabIndex = 12;
+            this.btnAnnuler.Text = "Annuler";
+            this.btnAnnuler.UseVisualStyleBackColor = false;
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
+            // 
             // FrmAbsences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -376,6 +391,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.pnlOKButtons.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -395,12 +411,13 @@
         private System.Windows.Forms.DateTimePicker dtpDebut;
         private System.Windows.Forms.DateTimePicker dtpFin;
         private System.Windows.Forms.ComboBox cboMotifs;
-        private System.Windows.Forms.Button btnAnnuler;
         private System.Windows.Forms.Panel pnlOKButtons;
         private System.Windows.Forms.Button btnOKEdit;
         private System.Windows.Forms.Button btnOKAjout;
         private System.Windows.Forms.Label lblMode;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnAnnuler;
     }
 }

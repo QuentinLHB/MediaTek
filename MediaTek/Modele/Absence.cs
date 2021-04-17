@@ -83,6 +83,7 @@ namespace MediaTek.Modele
         {
             this.personnel = personnel;
             this.dateDebut = dateDebut;
+            //personnel.RefreshOrder();
         }
 
         /// <summary>
@@ -117,7 +118,7 @@ namespace MediaTek.Modele
         private string DateDeuxDigits(int date)
         {
             if (date.ToString().Length < 2) return "0" + date;
-            else if (date.ToString().Length > 4) return date.ToString().Substring(2);
+            else if (date.ToString().Length == 4) return date.ToString().Substring(2);
             return date.ToString();
         }
     }

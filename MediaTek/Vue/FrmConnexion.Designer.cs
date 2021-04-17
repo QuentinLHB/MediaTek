@@ -57,12 +57,12 @@
             this.tlpLoginPwd.Location = new System.Drawing.Point(0, 0);
             this.tlpLoginPwd.Name = "tlpLoginPwd";
             this.tlpLoginPwd.RowCount = 6;
-            this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.61905F));
-            this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.761905F));
+            this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.12546F));
+            this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.749077F));
             this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.61905F));
+            this.tlpLoginPwd.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.12546F));
             this.tlpLoginPwd.Size = new System.Drawing.Size(466, 225);
             this.tlpLoginPwd.TabIndex = 0;
             // 
@@ -71,7 +71,7 @@
             this.txtMdp.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtMdp.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.txtMdp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(54)))));
-            this.txtMdp.Location = new System.Drawing.Point(236, 97);
+            this.txtMdp.Location = new System.Drawing.Point(236, 99);
             this.txtMdp.MaximumSize = new System.Drawing.Size(200, 35);
             this.txtMdp.Name = "txtMdp";
             this.txtMdp.Size = new System.Drawing.Size(150, 28);
@@ -83,7 +83,7 @@
             this.lblPwd.AutoSize = true;
             this.lblPwd.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.lblPwd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblPwd.Location = new System.Drawing.Point(109, 99);
+            this.lblPwd.Location = new System.Drawing.Point(109, 101);
             this.lblPwd.Name = "lblPwd";
             this.lblPwd.Size = new System.Drawing.Size(121, 20);
             this.lblPwd.TabIndex = 4;
@@ -94,7 +94,7 @@
             this.txtIdentifiant.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtIdentifiant.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.txtIdentifiant.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(54)))));
-            this.txtIdentifiant.Location = new System.Drawing.Point(236, 67);
+            this.txtIdentifiant.Location = new System.Drawing.Point(236, 69);
             this.txtIdentifiant.MaximumSize = new System.Drawing.Size(200, 35);
             this.txtIdentifiant.Name = "txtIdentifiant";
             this.txtIdentifiant.Size = new System.Drawing.Size(150, 28);
@@ -106,7 +106,7 @@
             this.lblLogin.AutoSize = true;
             this.lblLogin.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.lblLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblLogin.Location = new System.Drawing.Point(135, 69);
+            this.lblLogin.Location = new System.Drawing.Point(135, 71);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(95, 20);
             this.lblLogin.TabIndex = 3;
@@ -119,7 +119,7 @@
             this.btnValider.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnValider.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
             this.btnValider.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(54)))));
-            this.btnValider.Location = new System.Drawing.Point(236, 127);
+            this.btnValider.Location = new System.Drawing.Point(236, 129);
             this.btnValider.Name = "btnValider";
             this.btnValider.Size = new System.Drawing.Size(122, 34);
             this.btnValider.TabIndex = 6;
@@ -133,7 +133,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label1.Location = new System.Drawing.Point(134, 39);
+            this.label1.Location = new System.Drawing.Point(134, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(96, 20);
             this.label1.TabIndex = 7;
@@ -146,7 +146,7 @@
             this.ClientSize = new System.Drawing.Size(466, 225);
             this.Controls.Add(this.tlpLoginPwd);
             this.Name = "FrmConnexion";
-            this.Text = "Form1";
+            this.Text = "Connexion";
             this.tlpLoginPwd.ResumeLayout(false);
             this.tlpLoginPwd.PerformLayout();
             this.ResumeLayout(false);

@@ -71,7 +71,7 @@ namespace MediaTek.Vue
         /// <param name="e"></param>
         private void btnAbsences_Click(object sender, EventArgs e)
         {
-            if(lstPersonnel.SelectedIndex != 1)
+            if(lstPersonnel.SelectedIndex != -1)
             {
                 FrmAbsences frmAbsences = new FrmAbsences(controle, (Personnel)lstPersonnel.SelectedItem);
                 frmAbsences.ShowDialog();
@@ -113,6 +113,11 @@ namespace MediaTek.Vue
                 AccesEditionPersonnel(true, MODIFICATION);
                 txtNom.Focus();
             }
+
+            else
+            {
+                ErreurPasDeSelection();
+            }
         }
 
         /// <summary>
@@ -131,11 +136,12 @@ namespace MediaTek.Vue
                 {
                     controle.SupprPersonnel(personnel);
                     bindingList.ResetBindings();
+                    VideSaisie();
                 }
             }
             else
             {
-                MessageBox.Show("Aucun personnel n'est sélectionné.", "Suppression impossible.");
+                ErreurPasDeSelection();
             }
         }
 
@@ -186,7 +192,7 @@ namespace MediaTek.Vue
             }
             else
             {
-                MessageBox.Show("Merci de remplir tous les champs.", "Ajout impossible");
+                ErreurChampsVides();
             }            
 
         }
@@ -200,7 +206,7 @@ namespace MediaTek.Vue
         {
             if (VerifieChamps())
             {
-                DialogResult choix = MessageBox.Show($"Confirmer la modification ?",
+                DialogResult choix = MessageBox.Show("Confirmer la modification ?",
                 "Confirmation", MessageBoxButtons.YesNo);
                 if (choix == DialogResult.Yes)
                 {
@@ -208,7 +214,7 @@ namespace MediaTek.Vue
                     ValidationBtnOK();
                 }
             }
-            else ErreurPasDeSelection();           
+            else ErreurChampsVides();           
         }
 
         /*
@@ -223,6 +229,11 @@ namespace MediaTek.Vue
             MessageBox.Show("Aucun personnel n'est sélectionné.", "Action impossible.");
         }
 
+        private void ErreurChampsVides()
+        {
+            MessageBox.Show("Merci de compléter tous les champs.", "Action impossible");
+        }
+
         /// <summary>
         /// Actualise la liste du personnel et ferme l'accès à la zone de saisie.
         /// </summary>
@@ -230,8 +241,7 @@ namespace MediaTek.Vue
         {
             bindingList.ResetBindings();
             VideSaisie();
-            AccesEditionPersonnel(false);
-            
+            AccesEditionPersonnel(false);            
         }
 
         /// <summary>

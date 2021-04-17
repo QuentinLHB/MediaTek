@@ -20,11 +20,11 @@ namespace MediaTek.Controleur
         public List<Personnel> LesPersonnels { get => lesPersonnels; }
         private FrmPersonnel frmPersonnel;
         private FrmAbsences frmAbsences;
-        private FrmConnexion frmConnexion;
+        private Vue.FrmConnexion frmConnexion;
 
         public Controle()
         {
-            frmConnexion = new FrmConnexion(this);
+            frmConnexion = new Vue.FrmConnexion(this);
             frmConnexion.ShowDialog();
 
         }
@@ -74,7 +74,7 @@ namespace MediaTek.Controleur
         /// <param name="idService">Identifiant du service mis à jour.</param>
         public void ModifPersonnel(Personnel personnel, string nom, string prenom, string mail, string tel, int idService)
         {
-            personnel.Nom = nom;
+            personnel.Nom = nom.ToUpper();
             personnel.Prenom = prenom;
             personnel.Mail = mail;
             personnel.Tel = tel;
@@ -100,18 +100,18 @@ namespace MediaTek.Controleur
         /// <param name="dateFin">Date de fin de l'absence.</param>
         /// <param name="idMotif">Identifiant du motif de l'absence.</param>
         /// <returns></returns>
-        public bool AjoutAbsence(Personnel personnel, DateTime dateDebut, DateTime dateFin, int idMotif)
-        {
-            if(VerifieDateUnique(personnel, dateDebut))
-            {
-                Absence nvelleAbsence = new Absence(personnel, dateDebut, dateFin, idMotif);
-                personnel.Absences.Add(nvelleAbsence);
-                AccesDonnees.AjoutAbsence(nvelleAbsence);
-                return true;
-            }
-            return false;
-
-        }
+public bool AjoutAbsence(Personnel personnel, DateTime dateDebut, DateTime dateFin, int idMotif)
+{
+    if(VerifieDateUnique(personnel, dateDebut) == null)
+    {
+        Absence nvelleAbsence = new Absence(personnel, dateDebut, dateFin, idMotif);
+        personnel.Absences.Add(nvelleAbsence);
+        personnel.TrieAbsences();
+        AccesDonnees.AjoutAbsence(nvelleAbsence);
+        return true;
+    }
+    return false;
+}
 
         /// <summary>
         /// Modification d'une absence du personnel.
@@ -123,16 +123,14 @@ namespace MediaTek.Controleur
         /// <returns></returns>
         public bool ModifAbsence(Absence absence, DateTime nvelleDateDebut, DateTime nvelleDateFin, int nvelIdMotif)
         {
-            if (VerifieDateUnique(absence.LePersonnel, nvelleDateDebut))
-            {
-                absence.DateDebut = nvelleDateDebut;
-                absence.DateFin = nvelleDateFin;
-                absence.Motif = nvelIdMotif;
-                AccesDonnees.ModifAbence(absence);
-                return true;
-            }
+            absence.DateDebut = nvelleDateDebut;
+            absence.DateFin = nvelleDateFin;
+            absence.Motif = nvelIdMotif;
+            absence.LePersonnel.TrieAbsences();
+            AccesDonnees.ModifAbence(absence);            
             return false;
         }
+
 
         /// <summary>
         /// Suppression d'une absence.
@@ -145,13 +143,13 @@ namespace MediaTek.Controleur
             absence.LePersonnel.Absences.Remove(absence);            
         }
 
-        private bool VerifieDateUnique(Personnel personnel, DateTime dateDebut)
+        public Absence VerifieDateUnique(Personnel personnel, DateTime dateDebut)
         {
             foreach (Absence absence in personnel.Absences)
             {
-                if (absence.DateDebut.Equals(dateDebut)) return false;
+                if (absence.DateDebut.Date.Equals(dateDebut.Date)) return absence;
             }
-            return true;
+            return null;
         }
     }
 }

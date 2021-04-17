@@ -60,6 +60,7 @@ namespace MediaTek.Vue
             {
                 cboMotifs.Items.Add(motif);
             }
+            cboMotifs.SelectedIndex = 0;
 
             AccederEditionAbences(false);
         }
@@ -71,8 +72,7 @@ namespace MediaTek.Vue
         /// <param name="e"></param>
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            if (lstAbsences.SelectedIndex != -1) AccederEditionAbences(true, AJOUT);
-            else ErreurPasDeSelection();
+            AccederEditionAbences(true, AJOUT);            
         }
 
         /// <summary>
@@ -100,12 +100,17 @@ namespace MediaTek.Vue
         /// <param name="e"></param>
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
-            DialogResult choix = MessageBox.Show($"Confirmer la suppression ?", "Confirmation", MessageBoxButtons.YesNo);
-            if (choix == DialogResult.Yes)
+            if (lstAbsences.SelectedIndex != -1)
             {
-                controle.SupprAbsence((Absence)lstAbsences.SelectedItem);
-                bindingList.ResetBindings();
+                DialogResult choix = MessageBox.Show($"Confirmer la suppression ?", "Confirmation", MessageBoxButtons.YesNo);
+                if (choix == DialogResult.Yes)
+                {
+                    controle.SupprAbsence((Absence)lstAbsences.SelectedItem);
+                    bindingList.ResetBindings();
+                }
             }
+            else ErreurPasDeSelection();
+
         }
 
         /// <summary>
@@ -115,20 +120,28 @@ namespace MediaTek.Vue
         /// <param name="e"></param>
         private void btnOKEdit_Click(object sender, EventArgs e)
         {
-            DialogResult choix = MessageBox.Show($"Confirmer la modification ?", "Confirmation", MessageBoxButtons.YesNo);
+            Absence absenceSelectionnee = (Absence)lstAbsences.SelectedItem;
+            Absence absenceExistante = controle.VerifieDateUnique(personnel, dtpDebut.Value);
+            if (absenceExistante == null)
+            {
+                ConfirmationModification(absenceSelectionnee);
+            }    
+            else
+            {
+                if (absenceSelectionnee == absenceExistante) ConfirmationModification(absenceExistante);
+                else MessageBox.Show("Une absence a déjà été enregistrée avec cette date de début", "Modification impossible");
+            }        
+        }
+
+        private void ConfirmationModification(Absence absence)
+        {
+            DialogResult choix = MessageBox.Show($"Confirmer la modification de l'absence :\n{absence} ?", "Confirmation", MessageBoxButtons.YesNo);
             if (choix == DialogResult.Yes)
             {
-                if (controle.ModifAbsence((Absence)lstAbsences.SelectedItem, dtpDebut.Value, dtpFin.Value, cboMotifs.SelectedIndex + 1))
-                {
-                    bindingList.ResetBindings();
-                    ReinitialiseChamps();
-                }
-
-                else
-                {
-                    MessageBox.Show("Une absence est déjà enregistrée avec cette date de début.", "Erreur");
-                }
-            }                
+                controle.ModifAbsence(absence, dtpDebut.Value, dtpFin.Value, cboMotifs.SelectedIndex + 1);
+                ReinitialiseChamps();
+                ReinitialiseBinding();
+            }
         }
         /// <summary>
         /// Ajoute l'abence après confirmation de l'utilisateur.
@@ -139,7 +152,7 @@ namespace MediaTek.Vue
         {
             if (controle.AjoutAbsence(personnel, dtpDebut.Value, dtpFin.Value, cboMotifs.SelectedIndex + 1))
             {
-                bindingList.ResetBindings();
+                ReinitialiseBinding();
                 ReinitialiseChamps();
             }
             else
@@ -219,6 +232,12 @@ namespace MediaTek.Vue
         private void ErreurPasDeSelection()
         {
             MessageBox.Show("Aucune absence n'est sélectionnée ", "Action impossible");
+        }
+
+        private void ReinitialiseBinding()
+        {
+            bindingList = new BindingList<Absence>(personnel.Absences);
+            lstAbsences.DataSource = bindingList;
         }
     }
 }
