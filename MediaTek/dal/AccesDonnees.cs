@@ -11,12 +11,12 @@ namespace MediaTek.dal
     /// <summary>
     /// Classe effectuant les requêtes SQL nécessaires à l'extraction et à la mise à jour de la base de données.
     /// </summary>
-    public class AccesDonnees
+    public static class AccesDonnees
     {
         /// <summary>
         /// chaine de connexion à la bdd
         /// </summary>
-        private static string connectionString = "server=localhost;user id=admin;password=mdpadmin;database=mediatek";
+        readonly private static string connectionString = "server=localhost;user id=admin;password=mdpadmin;database=mediatek";
 
         /// <summary>
         /// Controle si l'utillisateur a le droit de se connecter (login et pwd)
@@ -183,7 +183,21 @@ namespace MediaTek.dal
         /// <param name="personnel">Personnel concerné.</param>
         public static void SupprPersonnel(Personnel personnel)
         {
+            SupprAbsencesPersonnel(personnel);
             string req = "delete from personnel where idpersonnel = @idpersonnel;";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@idpersonnel", personnel.IdPersonnel);
+            ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
+            conn.ReqUpdate(req, parameters);
+        }
+
+        /// <summary>
+        /// Supprime toutes les absences d'un personnel
+        /// </summary>
+        /// <param name="personnel"></param>
+        private static void SupprAbsencesPersonnel(Personnel personnel)
+        {
+            string req = "delete from absence where idpersonnel = @idpersonnel;";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@idpersonnel", personnel.IdPersonnel);
             ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);

@@ -11,6 +11,9 @@ using MediaTek.Controleur;
 
 namespace MediaTek.Vue
 {
+    /// <summary>
+    /// Formulaire d'authentification
+    /// </summary>
     public partial class FrmConnexion : Form
     {
         /// <summary>

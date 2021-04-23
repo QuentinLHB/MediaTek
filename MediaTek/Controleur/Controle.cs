@@ -16,11 +16,8 @@ namespace MediaTek.Controleur
     /// </summary>
     public class Controle
     {
-        private List<Personnel> lesPersonnels;
-        public List<Personnel> LesPersonnels { get => lesPersonnels; }
-        private FrmPersonnel frmPersonnel;
-        private FrmAbsences frmAbsences;
-        private Vue.FrmConnexion frmConnexion;
+        public List<Personnel> LesPersonnels { get; private set; }
+        readonly private Vue.FrmConnexion frmConnexion;
 
         public Controle()
         {
@@ -34,8 +31,8 @@ namespace MediaTek.Controleur
             if (AccesDonnees.ControleAuthentification(login, pwd))
             {
                 frmConnexion.Hide();
-                lesPersonnels = GetPersonnels();
-                frmPersonnel = new FrmPersonnel(this);
+                LesPersonnels = GetPersonnels();
+                new FrmPersonnel(this);
             }
 
             else frmConnexion.ErreurConnexion();
@@ -57,10 +54,9 @@ namespace MediaTek.Controleur
         /// <param name="idService">Identifiant du service du nouveau personnel</param>
         public void AjoutPersonnel(string nom, string prenom, string mail, string tel, int idService)
         {                    
-            Personnel nvoPersonnel = new Personnel(nom, prenom, tel, mail, idService);
-            lesPersonnels.Add(nvoPersonnel);
+            Personnel nvoPersonnel = new Personnel(AccesDonnees.GetMaxIdPersonnel()+1, nom, prenom, tel, mail, idService);
+            LesPersonnels.Add(nvoPersonnel);
             AccesDonnees.AjoutPersonnel(nvoPersonnel);
-            nvoPersonnel.IdPersonnel = AccesDonnees.GetMaxIdPersonnel();
         }
 
         /// <summary>
@@ -89,7 +85,7 @@ namespace MediaTek.Controleur
         public void SupprPersonnel(Personnel personnel)
         {
             AccesDonnees.SupprPersonnel(personnel);
-            lesPersonnels.Remove(personnel);            
+            LesPersonnels.Remove(personnel);            
         }
 
         /// <summary>
@@ -100,18 +96,18 @@ namespace MediaTek.Controleur
         /// <param name="dateFin">Date de fin de l'absence.</param>
         /// <param name="idMotif">Identifiant du motif de l'absence.</param>
         /// <returns></returns>
-public bool AjoutAbsence(Personnel personnel, DateTime dateDebut, DateTime dateFin, int idMotif)
-{
-    if(VerifieDateUnique(personnel, dateDebut) == null)
-    {
-        Absence nvelleAbsence = new Absence(personnel, dateDebut, dateFin, idMotif);
-        personnel.Absences.Add(nvelleAbsence);
-        personnel.TrieAbsences();
-        AccesDonnees.AjoutAbsence(nvelleAbsence);
-        return true;
-    }
-    return false;
-}
+        public bool AjoutAbsence(Personnel personnel, DateTime dateDebut, DateTime dateFin, int idMotif)
+        {
+            if(VerifieDateUnique(personnel, dateDebut) == null)
+            {
+                Absence nvelleAbsence = new Absence(personnel, dateDebut, dateFin, idMotif);
+                personnel.Absences.Add(nvelleAbsence);
+                personnel.TrieAbsences();
+                AccesDonnees.AjoutAbsence(nvelleAbsence);
+                return true;
+            }
+            return false;
+        }
 
         /// <summary>
         /// Modification d'une absence du personnel.

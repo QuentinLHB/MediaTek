@@ -1,5 +1,8 @@
 ﻿namespace MediaTek.Vue
 {
+    /// <summary>
+    /// Designer du formulaire du personnel
+    /// </summary>
     partial class FrmConnexion
     {
         /// <summary>

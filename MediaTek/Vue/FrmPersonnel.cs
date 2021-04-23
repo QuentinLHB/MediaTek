@@ -6,7 +6,9 @@ using MediaTek.Controleur;
 
 namespace MediaTek.Vue
 {
-    
+    /// <summary>
+    /// Formulaire de gestion du personnel
+    /// </summary>
     public partial class FrmPersonnel : Form
     {
         /// <summary>
@@ -24,7 +26,7 @@ namespace MediaTek.Vue
         /// <summary>
         /// Instance du controleur
         /// </summary>
-        private Controle controle;
+        readonly private Controle controle;
 
         /// <summary>
         /// Constructueur : Initialise les objets graphiques, leur contenu, et le contrôleur.
@@ -193,7 +195,7 @@ namespace MediaTek.Vue
             else
             {
                 ErreurChampsVides();
-            }            
+            }          
 
         }
 

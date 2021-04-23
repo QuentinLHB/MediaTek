@@ -12,50 +12,29 @@ namespace MediaTek.Modele
     public class Absence
     {
         /// <summary>
-        /// Dictionnaire contenant les identifiants et les libellés des motifs associés.
-        /// </summary>
-        private static Dictionary<int, string> lesMotifs = new Dictionary<int, string>();
-        /// <summary>
         /// Obtient le dictionnaire des motifs (identifiants-libellés)
         /// </summary>
-        public static Dictionary<int, string> Motifs { get => lesMotifs; }
+        public static Dictionary<int, string> Motifs { get; } = new Dictionary<int, string>();
 
-        /// <summary>
-        /// Début de l'absence.
-        /// </summary>
-        private DateTime dateDebut;
         /// <summary>
         /// Obtient ou définit la date de début de l'absence.
         /// </summary>
-        public DateTime DateDebut { get => dateDebut; set => dateDebut = value; }
+        public DateTime DateDebut { get; set; }
 
-        /// <summary>
-        /// Fin de l'absence.
-        /// </summary>
-        private DateTime dateFin;
         /// <summary>
         /// Obtient ou définit la date de fin de l'absence.
         /// </summary>
-        public DateTime DateFin { get => dateFin; set => dateFin = value; }
+        public DateTime DateFin { get; set; }
 
-        /// <summary>
-        /// Personnel concerné.
-        /// </summary>
-        private Personnel personnel;
         /// <summary>
         /// Obtient le personnel lié à l'absence.
         /// </summary>
-        public Personnel LePersonnel { get => personnel; }
+        public Personnel LePersonnel { get; }
 
-
-        /// <summary>
-        /// Motif de l'absence.
-        /// </summary>
-        private int motif;
         /// <summary>
         /// Obtient ou définit le motif de l'absence.
         /// </summary>
-        public int Motif { get => motif; set => motif = value; }
+        public int Motif { get; set; }
 
         /*
          * Constructeurs
@@ -70,8 +49,8 @@ namespace MediaTek.Modele
         /// <param name="motif">Motif de l'absence.</param>
         public Absence(Personnel personnel, DateTime dateDebut, DateTime dateFin, int motif) : this(personnel, dateDebut)
         {
-            this.dateFin = dateFin;
-            this.motif = motif;
+            this.DateFin = dateFin;
+            this.Motif = motif;
         }
 
         /// <summary>
@@ -81,9 +60,8 @@ namespace MediaTek.Modele
         /// <param name="dateDebut"></param>
         public Absence(Personnel personnel, DateTime dateDebut)
         {
-            this.personnel = personnel;
-            this.dateDebut = dateDebut;
-            //personnel.RefreshOrder();
+            this.LePersonnel = personnel;
+            this.DateDebut = dateDebut;
         }
 
         /// <summary>
@@ -93,8 +71,8 @@ namespace MediaTek.Modele
         /// <returns>Texte de l'absence.</returns>
         public override string ToString()
         {
-            if (dateFin == null) return $"{afficheDate(dateDebut)}";
-            else return $"{afficheDate(dateDebut)} - {afficheDate(DateFin)} ({lesMotifs[motif]})";
+            if (DateFin == null) return $"{afficheDate(DateDebut)}";
+            else return $"{afficheDate(DateDebut)} - {afficheDate(DateFin)} ({Motifs[Motif]})";
         }
 
         /// <summary>
