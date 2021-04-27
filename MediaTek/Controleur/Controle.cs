@@ -119,11 +119,12 @@ namespace MediaTek.Controleur
         /// <returns></returns>
         public bool ModifAbsence(Absence absence, DateTime nvelleDateDebut, DateTime nvelleDateFin, int nvelIdMotif)
         {
+            DateTime ancienneDate = absence.DateDebut;
             absence.DateDebut = nvelleDateDebut;
             absence.DateFin = nvelleDateFin;
             absence.Motif = nvelIdMotif;
             absence.LePersonnel.TrieAbsences();
-            AccesDonnees.ModifAbence(absence);            
+            AccesDonnees.ModifAbsence(absence, ancienneDate);            
             return false;
         }
 

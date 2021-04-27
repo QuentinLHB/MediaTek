@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -243,14 +244,15 @@ namespace MediaTek.dal
         /// Modifie une absence dans la base de données.
         /// </summary>
         /// <param name="absence">Absence à modifier.</param>
-        public static void ModifAbence(Absence absence)
+        public static void ModifAbsence(Absence absence, DateTime ancienneDateDebut)
         {
             string req = "update absence";
-            req += " set datedebut = @datedebut, datefin = @datefin, idmotif = @idmotif";
-            req += " where idpersonnel = @idpersonnel and datedebut = @datedebut";
+            req += " set datedebut = @nvelledatedebut, datefin = @datefin, idmotif = @idmotif";
+            req += " where idpersonnel = @idpersonnel and datedebut = @anciennedatedebut";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@idpersonnel", absence.LePersonnel.IdPersonnel);
-            parameters.Add("@datedebut", absence.DateDebut);
+            parameters.Add("@anciennedatedebut", ancienneDateDebut);
+            parameters.Add("@nvelledatedebut", absence.DateDebut);
             parameters.Add("@datefin", absence.DateFin);
             parameters.Add("@idmotif", absence.Motif);
             ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
